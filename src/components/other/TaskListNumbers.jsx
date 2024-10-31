@@ -20,3 +20,5 @@ const TaskListNumbers = ({ data }) => {
     </div>
   );
 };
+
+export default TaskListNumbers;

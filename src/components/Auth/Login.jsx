@@ -38,6 +38,9 @@ const Login = ({ handleLogin }) => {
             type="password"
             placeholder="Enter password"
           />
+          <button className="mt-7 text-white border-none outline-none hover:bg-emerald-700 font-semibold bg-emerald-600 text-lg py-2 px-8 w-full rounded-full placeholder:text-white">
+            Log in
+          </button>
         </form>
       </div>
     </div>
