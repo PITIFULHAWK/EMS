@@ -7,7 +7,7 @@ import { AuthContext } from "./context/AuthProvider";
 function App() {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
-  const [userData, setUSerData] = useContext(AuthContext);
+  const [userData, setUserData] = useContext(AuthContext);
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("loggedInUser");

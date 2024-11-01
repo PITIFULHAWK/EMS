@@ -10,12 +10,10 @@ const CreateTask = () => {
   const [asignTo, setAsignTo] = useState("");
   const [category, setCategory] = useState("");
 
-  const [newTask, setNewTask] = useState({});
-
   const submitHandler = (e) => {
     e.preventDefault();
 
-    setNewTask({
+    const newTask = {
       taskTitle,
       taskDescription,
       taskDate,
@@ -24,9 +22,11 @@ const CreateTask = () => {
       newTask: true,
       failed: false,
       completed: false,
-    });
+    };
+    console.log(newTask);
 
-    const data = userData;
+    const data = [...userData];
+    console.log(data);
 
     data.forEach((elem) => {
       if (asignTo == elem.firstName) {
@@ -34,6 +34,8 @@ const CreateTask = () => {
         elem.taskCounts.newTask = elem.taskCounts.newTask + 1;
       }
     });
+
+    localStorage.setItem("employees", JSON.stringify(data));
 
     setUserData(data);
     console.log(data);
@@ -67,7 +69,7 @@ const CreateTask = () => {
             <input
               value={taskDate}
               onChange={(e) => setTaskDate(e.target.value)}
-              className="text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-gray-400 mb-4"
+              className="text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4"
               type="date"
             />
           </div>
@@ -96,7 +98,7 @@ const CreateTask = () => {
           <h3 className="text-sm text-gray-300 mb-0.5">Description</h3>
           <textarea
             value={taskDescription}
-            onChange={(e) => e.target.value}
+            onChange={(e) => setTaskDescription(e.target.value)}
             className="w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400"
             name=""
             id=""
