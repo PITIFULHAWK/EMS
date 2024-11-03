@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const AcceptTask = ({ data }) => {
   //console.log()
   return (
@@ -6,7 +8,7 @@ const AcceptTask = ({ data }) => {
         <h3 className="bg-red-600 text-sm px-3 py-1 rounded">
           {data.category}
         </h3>
-        <h4 className="text-sm">{data.taskData}</h4>
+        <h4 className="text-sm">{moment(data.taskDate).format("LL")}</h4>
       </div>
       <h2 className="mt-5 text-2xl font-semibold">{data.taskTitle}</h2>
       <p className="text-sm mt-2">{data.taskDescription}</p>

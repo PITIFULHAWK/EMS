@@ -3,13 +3,20 @@ import Login from "./components/Auth/Login";
 import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import { AuthContext } from "./context/AuthProvider";
+import axios from "axios";
 
 function App() {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
-  const [userData, setUserData] = useContext(AuthContext);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get("http://localhost:3000/employees");
+      setUserData(res.data);
+    };
+    fetchData();
+
     const loggedInUser = localStorage.getItem("loggedInUser");
 
     if (loggedInUser) {

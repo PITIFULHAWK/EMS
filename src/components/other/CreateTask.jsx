@@ -1,44 +1,30 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../../context/AuthProvider";
+import axios from "axios";
 
 const CreateTask = () => {
-  const [userData, setUserData] = useContext(AuthContext);
-
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [asignTo, setAsignTo] = useState("");
   const [category, setCategory] = useState("");
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     const newTask = {
+      email: asignTo,
       taskTitle,
       taskDescription,
       taskDate,
       category,
-      active: false,
-      newTask: true,
-      failed: false,
-      completed: false,
     };
-    console.log(newTask);
 
-    const data = [...userData];
-    console.log(data);
-
-    data.forEach((elem) => {
-      if (asignTo == elem.firstName) {
-        elem.tasks.push(newTask);
-        elem.taskCounts.newTask = elem.taskCounts.newTask + 1;
-      }
-    });
-
-    localStorage.setItem("employees", JSON.stringify(data));
-
-    setUserData(data);
-    console.log(data);
+    try {
+      const res = await axios.post("http://localhost:3000/tasks", newTask);
+      console.log("Task created successfully", res.data);
+    } catch (e) {
+      console.error(e);
+    }
 
     setTaskTitle("");
     setCategory("");
@@ -80,7 +66,7 @@ const CreateTask = () => {
               onChange={(e) => setAsignTo(e.target.value)}
               className="text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4"
               type="text"
-              placeholder="employee name"
+              placeholder="employee email"
             />
           </div>
           <div>
