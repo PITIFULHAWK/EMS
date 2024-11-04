@@ -20,7 +20,10 @@ const CreateTask = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:3000/tasks", newTask);
+      const res = await axios.post(
+        "https://ems-back-or45.onrender.com/tasks",
+        newTask,
+      );
       console.log("Task created successfully", res.data);
     } catch (e) {
       console.error(e);

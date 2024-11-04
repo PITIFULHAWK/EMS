@@ -11,7 +11,9 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get("http://localhost:3000/employees");
+      const res = await axios.get(
+        "https://ems-back-or45.onrender.com/employees",
+      );
       setUserData(res.data);
     };
     fetchData();

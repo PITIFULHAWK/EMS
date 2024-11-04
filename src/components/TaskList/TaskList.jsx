@@ -11,9 +11,12 @@ const TaskList = ({ data }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const taskData = await axios.get("http://localhost:3000/tasks", {
-          params: { id: data.id },
-        });
+        const taskData = await axios.get(
+          "https://ems-back-or45.onrender.com/tasks",
+          {
+            params: { id: data.id },
+          },
+        );
         setTasks(taskData.data);
       } catch (e) {
         console.error(e);

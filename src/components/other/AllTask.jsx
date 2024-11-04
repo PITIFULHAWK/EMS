@@ -7,7 +7,9 @@ const AllTask = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/employees");
+        const res = await axios.get(
+          "https://ems-back-or45.onrender.com/employees",
+        );
         setEmployees(res.data);
       } catch (e) {
         console.error(e);
